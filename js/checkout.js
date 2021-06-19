@@ -38,5 +38,61 @@ function back(){
 }
 
 function checkout(e){
-    alert('checked')
+    let first_name = document.querySelector('.first_name').value;
+    let last_name = document.querySelector('.last_name').value;
+    let phonenumber = document.querySelector('.momo_number').value;
+    let email = document.querySelector('.email').value;
+    let network = document.querySelector('.network').value;
+    let voucher = document.querySelector('.voucher').value;
+
+    axios.post('https://api.flutterwave.com/v3/payments',{
+        tx_ref:"bgs-tx-19btytty",
+        amount:"5",
+        currency:"GHS",
+        redirect_url:"http://beverlygrantstudios.herokuapp.com/",
+        email:email,
+        phone_number:phonenumber,
+        name: `${first_name} ${last_name}`,
+        ...(network ==='vodafone' ? { voucher : voucher } : {} ),
+        network : network,
+        payment_options:"mobilemoneyghana",
+    },{
+        headers : {
+            "Authorization" : 'Bearer FLWSECK-eedbdcaaf5ce73a4495cd3522f5c68e6-X',
+            "Content-Type" : "application/json",
+            "Access-Control-Allow-Credentials": true,
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type",
+            'Access-Control-Allow-Origin': '*',
+            "crossdomain": true 
+        }
+    })
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error=>{
+        console.log(error)
+    })
+
+
+    /* axios.post('https://api.flutterwave.com/v3/charges?type=mobile_money_ghana',
+    {
+        tx_ref:"bgs-tx-1920bbtytty",
+        amount:"5",
+        currency:"GHS",
+        redirect_url:"http://beverlygrantstudios.herokuapp.com/",
+        email:email,
+        phone_number:phonenumber,
+        name: `${first_name} ${last_name}`,
+        ...(network ==='vodafone' ? { voucher : voucher } : {} ),
+        network : network,
+
+    },
+    {headers : 'Bearer FLWSECK-eedbdcaaf5ce73a4495cd3522f5c68e6-X'})
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error=>{
+        console.log(error)
+    }) */
 }
