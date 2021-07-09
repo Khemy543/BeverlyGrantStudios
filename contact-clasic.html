@@ -149,15 +149,15 @@
         <!-- contact form -->
         <div class="col-md-12 col-xs-12">
          <div class="contact onStep" data-animation="fadeInDown" data-time="1200">
-          <form action="#" class="row" id="form1" method="post" name="form1">
-          <input id="name" name="name" placeholder="your name" type="text"> <input id="email" name="email" placeholder="your e-mail" type="text">
+          <form class="row" onsubmit="event.preventDefault(); contactUs()">
+          <input id="name" name="name" placeholder="your name" class="contact-name" type="text"> <input class="contact-email" id="email" name="email" placeholder="your e-mail" type="text">
           <div class="error" id="error_email">Please check your email</div>
-          <textarea cols="50" id="message" name="message" placeholder="your enquiry" rows="4"></textarea>
+          <textarea cols="50" id="message" class="contact-message" name="message" placeholder="your enquiry" rows="4"></textarea>
           <div class="error" id="error_message">Please check your message</div>
           <div class="success" id="mail_success">Thank you. Your message has been sent.</div>
           <div class="error" id="mail_failed">Error, email not sent</div>
           <div class="space-half"></div>
-          <button id="send" class="btn-contact" type="submit">SEND</button>
+          <button class="btn-contact" type="submit">SEND</button>
           </form>
          </div>
         </div>
@@ -306,5 +306,8 @@
     <script src="js/map.js" type="text/javascript"></script>
     <!-- stock JS -->
     <script src="js/stock.js" type="text/javascript"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/contact-us.js"></script>
   </body>
 </html>
