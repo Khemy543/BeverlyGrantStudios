@@ -1,21 +1,22 @@
-function contactUs(e){
-    let name = document.querySelector('.contact-name').value;
-    let email = document.querySelector('.contact-email').value;
-    let message = document.querySelector('.contact-message').value;
+function contactUs(e) {
+  let name = document.querySelector(".contact-name").value;
+  let email = document.querySelector(".contact-email").value;
+  let message = document.querySelector(".contact-message").value;
 
-    console.log(message)
+  const data = { name, email, message };
 
-    axios.post(' localhost:5000/api/contact-us',{
-        name,email,message
-    },{
-        header : { 
-            'Access-Control-Allow-Origin': '*'
-         }
+  fetch("http://127.0.0.1:5000/api/contact-us", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      console.log(response);
     })
-    .then(response => {
-        console.log(response)
-    })
-    .catch(error=>{
-        console.log(error)
-    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
